@@ -36,15 +36,20 @@ routes.get("/:id",(req,res)=>{
     res.status(200).json(lista[req.params.id-1])
 })
 
+routes.post("/",(req,res)=>{
+    lista.push(req.body)
+    res.status(200).redirect("/")
+})
 
-routes.post("/:id",(req,res)=>{
-    
+routes.put("/:id",(req,res)=>{
+    console.log(req.body)
+    lista[req.params.id-1] = req.body
+    res.status(200).send("OK")
 })
 
 routes.delete("/:id",(req,res)=>{
     lista.splice(req.params.id-1,1)
     res.status(200).redirect("/")
 })
-
 
 module.exports = routes
